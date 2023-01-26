@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+<?php
+
+DEFINE('LOGGIX_HOST','{{HOST}}');
+
+if(!isset($argv[1])){
+   echo "ERR: No message specified\n";
+   die();
+}else{
+   $msg = urlencode($argv[1]);
+}
+if(isset($argv[2])){
+   $severityType = $argv[2];
+}else{
+   $severityType = "inf";
+}
+
+if(isset($argv[3])){
+   $module = $argv[3];
+}else{
+   $module = null;
+}
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, LOGGIX_HOST."/api/v1/log");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "entry_type=sys&severity_type=$severityType&module=$module&message=$msg");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+echo $response."\n";
+curl_close($ch);
