@@ -8,4 +8,4 @@ $dotenv->load();
 function env($key){
     return $_ENV[$key];
 }
-Loggix::debug("Funciona");
+Loggix::debug("It works!");
