@@ -15,7 +15,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "guzzlehttp/guzzle": "^7.0.1",
-        "vlucas/phpdotenv": "^5.5.0"
+        "guzzlehttp/guzzle": ">=1.0",
+        "vlucas/phpdotenv": ">=1.0"
     }
 }
