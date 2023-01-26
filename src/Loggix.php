@@ -40,14 +40,14 @@ class Loggix
             die("Loggix server entry LOGGIX_SERVER is missing");
         }
         $version = env('LOGGIX_VERSION', 'v1');
-        $payload = self::makePayload($entryType, $severityType, $code, $module, $file, $line, $position, $message);
+        $payload = self::makePayload($entryType, $severityType, $code, $module, $file, $line, $position, $message, $token);
 
         $client = new Client();
         $httpResponse = $client->post($server."/api/$version/log", ['json'=>$payload]);
         $body = $httpResponse->getBody();
         return $body;
     }
-    private static function makePayload($entryType, $severityType, $code, $module, $file, $line, $position, $message){
+    private static function makePayload($entryType, $severityType, $code, $module, $file, $line, $position, $message, $token){
         if($entryType == null){
             $entryType = 'app';
         }
@@ -63,6 +63,7 @@ class Loggix
             'line' => $line,
             'position' => $position,
             'message' => $message,
+            'token' => $token
         ];
         return $payload;
     }
