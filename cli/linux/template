@@ -23,7 +23,7 @@ if(isset($argv[3])){
 
 $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, LOGGIX_HOST."/api/v1/log");
+curl_setopt($ch, CURLOPT_URL, LOGGIX_HOST."/api/v1/clilog");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, "entry_type=sys&severity_type=$severityType&module=$module&message=$msg");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
