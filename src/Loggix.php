@@ -43,8 +43,12 @@ class Loggix
         $payload = self::makePayload($entryType, $severityType, $code, $module, $file, $line, $position, $message, $token);
 
         $client = new Client();
-        $httpResponse = $client->post($server."/api/$version/log", ['json'=>$payload]);
-        $body = $httpResponse->getBody();
+        try{
+            $httpResponse = $client->post($server."/api/$version/log", ['json'=>$payload]);
+            $body = $httpResponse->getBody();
+        }catch(GuzzleHttp\Exception\ClientException $e){
+            self::critical("Error interno de cliente Loggix. ".$e->getMessage());
+        }
         return $body;
     }
     private static function makePayload($entryType, $severityType, $code, $module, $file, $line, $position, $message, $token){
