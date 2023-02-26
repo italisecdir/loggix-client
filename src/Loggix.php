@@ -6,26 +6,26 @@ use GuzzleHttp\Client;
 
 class Loggix
 {
-    public static function debug($message){
-        self::record($message, 'app', 'dbg');
+    public static function debug($message, $module=null){
+        self::record($message, 'app', 'dbg', null, $module);
     }
-    public static function info($message){
-        self::record($message, 'app', 'inf');
+    public static function info($message, $module=null){
+        self::record($message, 'app', 'inf', null, $module);
     }
-    public static function notice($message){
-        self::record($message, 'app', 'not');
+    public static function notice($message, $module=null){
+        self::record($message, 'app', 'not', null, $module);
     }
-    public static function warning($message){
-        self::record($message, 'app', 'wrn');
+    public static function warning($message, $module=null){
+        self::record($message, 'app', 'wrn', null, $module);
     }
-    public static function error($message){
-        self::record($message, 'app', 'err');
+    public static function error($message, $module=null){
+        self::record($message, 'app', 'err', null, $module);
     }
-    public static function critical($message){
-        self::record($message, 'app', 'cri');
+    public static function critical($message, $module=null){
+        self::record($message, 'app', 'cri', null, $module);
     }
-    public static function alert($message){
-        self::record($message, 'app', 'ale');
+    public static function alert($message, $module=null){
+        self::record($message, 'app', 'ale', null, $module);
     }
     public static function record($message, $entryType=null, $severityType=null, $code=null, $module=null, $file=null, $line=null, $position=null){
         if(env('LOGGIX_ACTIVE') != true){
